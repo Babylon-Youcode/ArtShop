@@ -37,7 +37,7 @@
                         @foreach ($subcategories as $key => $subcategory)
                   <td><a href="#">{{$key+1}}</a></td>
                   <td>{{$subcategory->name}}</td>
-                  <td>{{$subcategory->category->id}}</td>
+                  <td>{{$subcategory->category->name}}</td>
                   <td><a href="{{route('subcategory.edit',[$subcategory->id])}}"><button class="btn btn-primary">Edit</button></a></td>
                   <td>
                       <form action="{{route('subcategory.destroy',[$subcategory->id])}}" method="POST" onsubmit="return confirmDelete()">@csrf
