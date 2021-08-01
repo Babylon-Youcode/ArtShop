@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subcategory as ModelsSubcategory;
 use Illuminate\Http\Request;
-
+use App\Subcategory;
 class SubcategoryController extends Controller
 {
     /**
@@ -13,7 +14,8 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        //
+        $subcategories = ModelsSubcategory::get();
+        return view('admin.subcategory.index',compact('subcategories'));
     }
 
     /**
@@ -34,7 +36,17 @@ class SubcategoryController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request,[
+            'name'=>'required|min:3',
+            'category'=>'required'
+        ]);
+        ModelsSubcategory::create([
+            'name'=>$request->name,
+            'category_id'=>$request->category
+
+        ]);
+        notify()->success('SubCategory created successfully!');
+        return redirect()->back();
     }
 
     /**
