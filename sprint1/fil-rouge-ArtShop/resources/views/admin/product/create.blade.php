@@ -13,7 +13,7 @@
     <div class="alert alert-success">{{Session::get('message')}}</div>
     @endif
     <div class="col-lg-10">
-        <form action="{{route('category.store')}}" method="POST" enctype="multipart/form-data">@csrf
+        <form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">@csrf
         <div class="card mb-6">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Create Product</h6>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Description</label>
-                    <textarea name="description" class="form-control @error('description') is-invalid @enderror"></textarea>
+                    <textarea name="description" id="summernote" class="form-control @error('description') is-invalid @enderror"></textarea>
                     @error('description')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Price</label>
-                    <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="" aria-describedby="" >
+                    <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="" aria-describedby="">
                     @error('price')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -58,29 +58,29 @@
                      @enderror
                 </div>
                 <div class="form-group">
-                    <label for="">Additional_information</label>
-                    <textarea name="additional_info" class="form-control @error('Additional_info') is-invalid @enderror"></textarea>
-                    @error('Additional_info')
+                    <label for="">Additional information</label>
+                    <textarea name="additional_info" id="summernote1" class="form-control @error('additional_info') is-invalid @enderror"></textarea>
+                    @error('additional_info')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                      @enderror
                 </div>
                 <div class="form-group">
-                        <label for="customFile">Choose Category</label>
+                    <div class="custom-file">
+                        <label>Choose Category</label>
                         <select name="category" class="form-control @error('category') is-invalid @enderror">
-                            <option value="">select</option>
+                            <option value="">Select category</option>
                             @foreach(App\Models\Category::all() as $category)
                             <option value="{{$category->id}}">{{$category->name}}</option>
-                            @endforeach
+                            @endforeach    
                         </select>
                         @error('category')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                         @enderror
-                    </div>
-                </div>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                     @enderror
+                    </div><br><br>
                         <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
