@@ -29,6 +29,12 @@ $('#summernote').summernote();
   $(document).ready(function(){
   $('#summernote1').summernote();
   });</script>
+  <script>
+    $(document).ready(function(){
+      $('dataTable').DataTable();
+      $('dataTableHover').DataTable();
+    });
+  </script>
 </body>
 
 </html>

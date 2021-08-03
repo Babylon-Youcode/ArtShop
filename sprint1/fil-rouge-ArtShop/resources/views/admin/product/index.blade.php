@@ -4,7 +4,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 ml-4 text-gray-800">Product</h1>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="./"></a></li>
+        <li class="breadcrumb-item"><a href="./">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">Product</li>
     </ol>
 </div>
@@ -26,12 +26,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                    
-                      
-                    </tbody>
+                   
                   </table>
                 </div>
               </div>
             </div>
-          </div>  
+          </div> 
 @endsection
