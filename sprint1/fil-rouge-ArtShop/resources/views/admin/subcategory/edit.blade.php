@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+{{-- @extends('admin.layouts.main')
 
 @section('content')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -51,4 +51,4 @@
         </form>
     </div>
 </div>
-@endsection
+@endsection --}}
