@@ -70,7 +70,7 @@
                     <div class="custom-file">
                         <label>Choose Category</label>
                         <select name="category" class="form-control @error('category') is-invalid @enderror">
-                            <option value="">Select category</option>
+                            <option value="">Select</option>
                             @foreach(App\Models\Category::all() as $category)
                             <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach    
@@ -81,10 +81,39 @@
                     </span>
                      @enderror
                     </div><br><br>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <label>Choose Subcategory</label>
+                            <select name="subcategory" class="form-control @error('subcategory') is-invalid @enderror">
+                                <option value="">Select</option>   
+                            </select>
+                        </div><br><br>
                         <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
         </form>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+$("document").ready(function(){
+    $('select[name="category"]').on('change',function(){
+        var catId = $(this).val();
+        if(catId){
+           $.ajax({
+                    url: '/subcategories/'+catId,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data){
+                            $('select[name="subcategory"]').empty();
+                            // $.each(data,function(key, value){
+                                $('select[name="subcategory"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            // })
+                        
+                    }
+           }) 
+        })
+    })
+});
+</script>
 @endsection

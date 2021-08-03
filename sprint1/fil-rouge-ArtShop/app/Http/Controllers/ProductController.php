@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Models\SubCategory;
 
 class ProductController extends Controller
 {
     public function index(){
 
+        
     }
     public function create(){
      return view('admin.product.create');   
@@ -21,5 +22,11 @@ class ProductController extends Controller
             'additional_info'=>'required',
             'category'=>'required'
         ]);
+    }
+   
+    
+    public function loadSubCategories(Request $request,$id){
+        $subcategory = Subcategory::where('category_id',$id)->pluck('name','id');
+        return response()->json($subcategory);
     }
 }

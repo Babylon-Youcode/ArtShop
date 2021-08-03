@@ -40,7 +40,7 @@
                   <td><img src="{{Storage::url($category->image)}}" width="100"></td>
                   <td>{{$category->name}}</td>
                   <td>{{$category->description}}</td>
-                  <td><a href="{{route('category.edit',[$category->id])}}"><button class="btn btn-primary">Edit</button></a></td>
+                  <td><a href="{{route('category.edit',[$category->id])}}"><button class="btn btn-info">Edit</button></a></td>
                   <td>
                       <form action="{{route('category.destroy',[$category->id])}}" method="POST" onsubmit="return confirmDelete()">@csrf
                             {{method_field('DELETE')}}
