@@ -24,7 +24,7 @@
                    
                 <tr>
                   <th>SN</th>
-                  <th>Image</th>
+                  {{-- <th>Image</th> --}}
                   <th>Name</th>
                   <th>Description</th>
                   <th>Action</th>
@@ -37,7 +37,7 @@
                     @if(count($categories)>0)
                         @foreach ($categories as $key => $category)
                   <td><a href="#">{{$key+1}}</a></td>
-                  <td><img src="{{Storage::url($category->image)}}" width="100"></td>
+                  {{-- <td><img src="{{Storage::url($category->image)}}" width="100"></td> --}}
                   <td>{{$category->name}}</td>
                   <td>{{$category->description}}</td>
                   <td><a href="{{route('category.edit',[$category->id])}}"><button class="btn btn-info">Edit</button></a></td>

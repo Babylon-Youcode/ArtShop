@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
+// use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +26,7 @@ Route::get('/index',[testController::class,'index']);
 
 // Route::get('/index',[CategoryController::class,'create']);
 // Route::post('/post/{id}',[CategoryController::class,'post'])->name('mourad');
-Route::get('subcategories/{id}','ProductController@loadSubCategories');
+// Route::get('subcategories/{id}','ProductController@loadSubCategories');
 Route::resource('category','CategoryController');
 Route::resource('product','ProductController');
 Route::resource('subcategory','SubcategoryController');

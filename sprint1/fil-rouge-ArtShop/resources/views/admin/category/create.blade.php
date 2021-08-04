@@ -37,7 +37,7 @@
                     </span>
                      @enderror
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="customFile" name="image">
                         <label class="custom-file-label" for="customFile">Choose file</label>
@@ -47,7 +47,7 @@
                     </span>
                      @enderror
                     </div>
-                </div>
+                </div> --}}
                         <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
