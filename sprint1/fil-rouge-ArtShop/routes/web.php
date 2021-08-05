@@ -3,6 +3,7 @@
 // use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,23 +15,33 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/index', function(){
+Route::get('/', 'FrontProductListController@index');
+
+Route::get('/dashboard', function(){
     return view('admin.dashboard');
-    });
+});
 
-Route::get('/index',[testController::class,'index']);
 
-// Route::get('/index',[CategoryController::class,'create']);
-// Route::post('/post/{id}',[CategoryController::class,'post'])->name('mourad');
-// Route::get('subcategories/{id}','ProductController@loadSubCategories');
-Route::resource('category','CategoryController');
-Route::resource('product','ProductController');
-Route::resource('subcategory','SubcategoryController');
+
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home',function(){
+    if(Auth::user() && Auth::user()->is_admin)
+        return redirect('/dashboard');
+});
+route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],
+function(){
+    Route::get('/dashboard', function(){
+        return view('admin.dashboard');
+    });
+
+    
+Route::resource('category','CategoryController');
+Route::resource('product','ProductController');
+Route::resource('subcategory','SubcategoryController');
+});

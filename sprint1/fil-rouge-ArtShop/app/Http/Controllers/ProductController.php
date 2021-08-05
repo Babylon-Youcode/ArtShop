@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -47,7 +48,7 @@ class ProductController extends Controller
        $image = $product->image;
        if($request->hasFile('image')){
            $image = $request->file('image')->store('public/product');
-          \Storage::delete($image);
+          Storage::delete($image);
           $product->name = $request->name;
           $product->description = $request->description;
           $product->image = $image;
@@ -72,7 +73,7 @@ class ProductController extends Controller
             $product = Product::find($id);
             $filname = $product->image;
             $product->delete();
-            \Storage::delete($filname);
+            Storage::delete($filname);
             notify()->success('Product deleted succefully !');
             return redirect()->route('product.index');
         }
