@@ -38,20 +38,6 @@
                     </span>
                      @enderror
                 </div>
-                {{-- <div class="form-group">
-                    <div class="custom-file">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
-                        <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="customFile" name="image">
-                        <br>
-                        <img src="{{Storage::url($category->image) }}" width="100">
-                        @error('image')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                     @enderror
-                    </div>
-                    <br><br><br><br><br>
-                </div> --}}
                 <div class="form-group " >
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>

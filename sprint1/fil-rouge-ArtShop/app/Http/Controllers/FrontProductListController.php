@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\Product;
+use \App\Models\Product;
 
 class FrontProductListController extends Controller
 {
     public function index(){
-       return view('product');
+        $products = Product::get();
+       return view('product', compact('products'));
+    }
+    public function show($id){
+        $product = Product::find($id);
+        return view('show', compact('product'));
     }
 
 }

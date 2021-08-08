@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/', 'FrontProductListController@index');
-
+Route::get('/product/{id}', 'FrontProductListController@show');
 Route::get('/dashboard', function(){
     return view('admin.dashboard');
 });

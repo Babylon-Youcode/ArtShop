@@ -44,6 +44,7 @@ class ProductController extends Controller
          return view('admin.product.edit',compact('product'));
         }
         public function update(Request $request,$id){
+        
             $product = Product::find($id);
        $image = $product->image;
        if($request->hasFile('image')){

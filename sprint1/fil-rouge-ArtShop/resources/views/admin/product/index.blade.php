@@ -42,8 +42,7 @@
                             <td>
                               <a href="{{route('product.edit',[$product->id])}}">
                               <button class="btn btn-primary">Edit</button>
-                              </a>
-                              
+                              </a>                              
                             </td>
                             <td>
                               <form action="{{route('product.destroy',[$product->id])}}" method="POST" onsubmit="return confirmDelete()">@csrf

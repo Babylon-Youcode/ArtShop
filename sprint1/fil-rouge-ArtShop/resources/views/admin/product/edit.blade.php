@@ -10,7 +10,7 @@
 </div>
 <div class="row justify-content-center">
     @if(Session::has('message'))
-    <div class="alert alert-success">{{Session::get('message')}}</div>
+    <div class="alert alert-success" style="z-index:1">{{Session::get('message')}}</div>
     @endif
     <div class="col-lg-10">
         <form action="{{route('product.update', [$product->id])}}" method="POST" enctype="multipart/form-data">@csrf
@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Description</label>
-                    <textarea name="description" id="summernote" class="form-control @error('description') is-invalid @enderror">{!! $product->description !!}</textarea>
+                    <textarea name="description" id="summernote" class="form-control @error('description') is-invalid @enderror">{{ $product->description }}</textarea>
                     @error('description')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Additional information</label>
-                    <textarea name="additional_info" id="summernote1" class="form-control @error('additional_info') is-invalid @enderror">{!! $product->additional_info !!}</textarea>
+                    <textarea name="additional_info" id="summernote1" class="form-control @error('additional_info') is-invalid @enderror">{{ $product->additional_info }}</textarea>
                     @error('additional_info')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -99,24 +99,5 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-// $("document").ready(function(){
-//     $('select[name="category"]').on('change',function(){
-//         var catId = $(this).val();
-//         if(catId){
-//            $.ajax({
-//                     url: '/subcategories/'+catId,
-//                     type: "GET",
-//                     dataType: "json",
-//                     success:function(data){
-//                             $('select[name="subcategory"]').empty();
-                            // $.each(data,function(key, value){
-                                // $('select[name="subcategory"]').append('<option value="'+ key +'">'+ value +'</option>');
-                            // })
-                        
-//                     }
-//            }) 
-//         })
-//     })
-// });
 </script>
 @endsection
