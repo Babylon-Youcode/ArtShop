@@ -2,16 +2,6 @@
 
 @section('content')
 <main role="main" style=" margin-left: auto;margin-right: auto;width: 80%">
-  {{-- <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">Album example</h1>
-      <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-      <p>
-        <a href="#" class="btn btn-primary my-2">Main call to action</a>
-        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-      </p>
-    </div>
-  </section> --}}
   <section class="jumbotron">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -41,10 +31,10 @@
   </div>
 </section>
   <section class="container-fluid">
-<div class="cat">
+<div class="cat" style="transform: translate(20px,0px)">
   <h2>Category</h2>
   @foreach (App\Models\Category::all() as $cat)
-     <button class="btn btn-secondary">{{$cat->name}}</button> 
+     <input type="button" class="btn btn-secondary flask" value="{{$cat->name}}"  data-filter="{{$cat->name}}">
   @endforeach
 </div>
         <div class="album py-5 bg-light">
@@ -54,11 +44,11 @@
             @foreach ($products as $product)
               <div class="col-md-4">
                 <div class="card mb-4 box-shadow-sm">
-                  <img class="card-img-top" src="{{Storage::url($product->image)}}" width="100%" height="225">
+                  <img class="card-img-top" src="{{Storage::url($product->image)}}" width="100%" height="200">
                   <div class="card-body">
-                    <p><b>{{$product->name}}</b></p>
+                    <p><b>{{$product->name}} - {{ $product->category_id }}</b></p>
                     <p class="card-text">
-                      {!! Str::limit($product->description,120) !!}
+                      {!! Str::limit($product->description,100) !!}
                     </p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
@@ -73,35 +63,70 @@
               @endforeach
             </div>
           </div>
+          
         </div>
+    
       </section>
       <div class="jumbotron" style="width: 90%;transform: translate(5%);">
-        <div id="carouselExampleFade" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
               <div class="row">
-                <div class="col-3" >
-                  <img src="{{ asset('public/admin/images/art1.jpeg') }}" class="img-thumbnail">
+                @foreach ($randomActiveProducts as $product)              
+                <div class="col-4" >
+                    <div class="card mb-4 box-shadow-sm">
+                      <img src="{{Storage::url($product->image)}}" style="width: 100%" height="200">
+                      <div class="card-body">
+                        <p><b>{{$product->name}}</b></p>
+                        <p class="card-text">
+                          {{ (Str::limit($product->description,110)) }}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <a href="product/{{$product->id}}"><button type="button" class="btn btn-sm btn-outline-success">View</button></a>
+                            <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                          </div>
+                          <small class="text-muted">{{$product->price}} Dh</small>
+                        </div>
+                      </div>
+                    </div>
                 </div>
-                <div class="col-3">
-                  <img src="../img/art3.jpeg" class="img-thumbnail">
+                @endforeach
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row">
+                @foreach ($randomItemProducts as $product)  
+                <div class="col-4">
+                  <div class="card mb-4 box-shadow-sm">
+                    <img class="card-img-top" src="{{Storage::url($product->image)}}" width="100%" height="200">
+                    <div class="card-body">
+                      <p><b>{{$product->name}}</b></p>
+                      <p class="card-text">
+                        {{(Str::limit($product->description,110))}}
+                      </p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <a href="product/{{$product->id}}"><button type="button" class="btn btn-sm btn-outline-success">View</button></a>
+                          <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                        </div>
+                        <small class="text-muted">{{$product->price}} Dh</small>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-3">
-                  <img src="../img/art3.jpeg" class="img-thumbnail">
-                </div>
-                <div class="col-3">
-                  <img src="../img/art3.jpeg" class="img-thumbnail">
+                  @endforeach
                 </div>
               </div>
             </div>
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
         </div>
       </div>
   
@@ -111,10 +136,11 @@
           <p class="float-right">
             <a href="#">Back to top</a>
           </p>
-          <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+          {{-- <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
           <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
-        </div>
+        </div> --}}
       </footer>
         </div>
-    </div>    
+    </div>  
 @endsection
+

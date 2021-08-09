@@ -79,5 +79,32 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+        const btns = document.querySelectorAll('.flask');
+        console.log(btns);
+        btns.forEach(element => {
+
+            element.addEventListener('click',e =>{
+                
+                console.log(e.target);
+               const filter = e.target.dataset.filter;
+                switch(filter){
+
+                    case 'Standard' : console.log('Standatd clicked');
+                    break;
+                    default : console.log('error');
+                }
+               
+            })
+        })
+    })
+
+
+    </script>
 </body>
 </html>

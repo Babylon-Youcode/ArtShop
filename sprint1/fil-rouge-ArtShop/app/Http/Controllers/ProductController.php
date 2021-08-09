@@ -5,14 +5,12 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 
-
-
 class ProductController extends Controller
 {
     public function index(){
         $products = Product::get();
         return view('admin.product.index',compact('products'));
-        return view('admin.product.index');
+        // return view('admin.product.index');
     }
     public function create(){
      return view('admin.product.create');   
@@ -29,10 +27,10 @@ class ProductController extends Controller
         $image = $request->file('image')->store('public/product');
         Product::create([
         'name'=>$request->name,
-        'description'=>$request->description,
+        'description'=>trim(strip_tags($request->description)),
         'image'=>$image,
         'price'=>$request->price,
-        'additional_info'=>$request->additional_info,
+        'additional_info'=>trim(strip_tags($request->additional_info)),
         'category_id'=>$request->category
         ]);
         notify()->success('Product deleted succefully !');
@@ -45,24 +43,27 @@ class ProductController extends Controller
         }
         public function update(Request $request,$id){
         
-            $product = Product::find($id);
+       $product = Product::find($id);
        $image = $product->image;
+
        if($request->hasFile('image')){
            $image = $request->file('image')->store('public/product');
           Storage::delete($image);
           $product->name = $request->name;
-          $product->description = $request->description;
+          $product->description = trim(strip_tags($request->description));
           $product->image = $image;
           $product->price=$request->price;
-          $product->additional_info = $request->additional_info;
+          $product->additional_info = trim(strip_tags($request->additional_info));
           $product->category_id = $request->category;
           $product->save();
-       }else{
+       }
+       else
+       {
           $product->name = $request->name;
-          $product->description= $request->description;
+          $product->description= trim(strip_tags($request->description));
           $product->image = $image;
           $product->price=$request->price;
-          $product->additional_info = $request->additional_info;
+          $product->additional_info = trim(strip_tags($request->additional_info));
           $product->category_id = $request->category;
           $product->save();
         }

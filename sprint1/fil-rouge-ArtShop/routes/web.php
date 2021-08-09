@@ -1,9 +1,11 @@
 <?php
 
 // use App\Http\Controllers\CategoryController;
+
+use App\Http\Controllers\FrontProductListController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +21,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/', 'FrontProductListController@index');
-Route::get('/product/{id}', 'FrontProductListController@show');
+Route::get('/product/{id}', [FrontProductListController::class,'show'])->name('product.view');
+Route::get('/category/{name}', 'FrontProductListController@allProduct')->name('product.list');
 Route::get('/dashboard', function(){
     return view('admin.dashboard');
 });

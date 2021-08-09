@@ -32,13 +32,13 @@
                         @foreach($products as $product)
                         <tr>
                             <td>
-                                <img src="{{Storage::url($product->image)}}" width="100" alt="">
+                                <img src="{{Storage::url($product->image)}}" width="100">
                             </td>
                             <td>{{$product->name}}</td>
                             <td>{!! $product->description !!}</td>
                             <td>{!! $product->additional_info !!}</td>
                             <td>{{$product->price}}</td>
-                            <td>{{$product->category->name}}</td>
+                            <td>{{$product->category_name}}</td>
                             <td>
                               <a href="{{route('product.edit',[$product->id])}}">
                               <button class="btn btn-primary">Edit</button>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Models\Category as ModelsCategory;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = ModelsCategory::get();
+        $categories = Category::get();
         return view('admin.category.index', compact('categories'));
     }
 
@@ -43,7 +43,7 @@ class CategoryController extends Controller
             // 'image'=>'required|mimes:png,jpeg'
         ]);
         // $image = $request->file('image')->store('public/files');
-        ModelsCategory::create([
+        Category::create([
             'name'=>$request->name,
             'slug'=>Str::slug($request->name),
             'description'=>$request->description,
@@ -72,7 +72,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = ModelsCategory::find($id);
+        $category = Category::find($id);
         return view('admin.category.edit',compact('category'));
     }
 
@@ -85,7 +85,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $category = ModelsCategory::find($id);
+       $category = Category::find($id);
     //    $image = $category->image;
     //    if($request->hasFile('image')){
     //        $image = $request->file('image')->store('public/files');
@@ -107,7 +107,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = ModelsCategory::find($id);
+        $category = Category::find($id);
         // $filname = $category->image;
         $category->delete();
         // \Storage::delete($filname);
