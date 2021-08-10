@@ -29,6 +29,11 @@ Route::get('/dashboard', function(){
 
 
 
+Route::get('/addTo Cart/{product}','cartController@addTocart')->name('add.cart');
+Route::get('/cart','CartController@showCart')->name('cart.show');
+route::post('/products/{product}','CartController@updateCart')->name('cart.update');
+route::post('/product/{product}','CartController@removeCart')->name('cart.remove');
+
 
 Auth::routes();
 

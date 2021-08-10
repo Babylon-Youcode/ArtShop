@@ -53,7 +53,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
                         <a href="product/{{$product->id}}"><button type="button" class="btn btn-sm btn-outline-success">View</button></a>
-                        <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                        <a href="{{route('add.cart',[$product->id])}}"><button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button></a>
                       </div>
                       <small class="text-muted">{{$product->price}} dh</small>
                     </div>
@@ -84,7 +84,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                           <div class="btn-group">
                             <a href="product/{{$product->id}}"><button type="button" class="btn btn-sm btn-outline-success">View</button></a>
-                            <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                            <a href="{{route('add.cart',[$product->id])}}"><button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button></a>
                           </div>
                           <small class="text-muted">{{$product->price}} Dh</small>
                         </div>
@@ -108,7 +108,7 @@
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                           <a href="product/{{$product->id}}"><button type="button" class="btn btn-sm btn-outline-success">View</button></a>
-                          <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                          <a href="{{route('add.cart',[$product->id])}}"><button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button></a>
                         </div>
                         <small class="text-muted">{{$product->price}} Dh</small>
                       </div>
