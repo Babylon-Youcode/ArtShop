@@ -30,36 +30,44 @@
     </a>
   </div>
 </section>
+
+
   <section class="container-fluid">
 <div class="cat" style="transform: translate(20px,0px)">
-  <h2>Category</h2>
+  <h2 style="font-size: 25px">Category :</h2><br>
+  <input type="button" class="btn btn-secondary flask" value="All" data-filter="all">
   @foreach (App\Models\Category::all() as $cat)
-     <input type="button" class="btn btn-secondary flask" value="{{$cat->name}}"  data-filter="{{$cat->name}}">
+  <input type="button" class="btn btn-secondary flask" value="{{$cat->name}}"  data-filter="{{$cat->slug}}">
   @endforeach
+  
 </div>
         <div class="album py-5 bg-light">
           <div class="container">
-            <h2>Products</h2>
+            <h2 style="font-size: 25px">Products :</h2><br>
             <div class="row">
-            @foreach ($products as $product)
-              <div class="col-md-4">
-                <div class="card mb-4 box-shadow-sm">
-                  <img class="card-img-top" src="{{Storage::url($product->image)}}" width="100%" height="200">
-                  <div class="card-body">
-                    <p><b>{{$product->name}} - {{ $product->category_id }}</b></p>
-                    <p class="card-text">
-                      {!! Str::limit($product->description,100) !!}
-                    </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group">
-                        <a href="product/{{$product->id}}"><button type="button" class="btn btn-sm btn-outline-success">View</button></a>
-                        <a href="{{route('add.cart',[$product->id])}}"><button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button></a>
-                      </div>
-                      <small class="text-muted">{{$product->price}} dh</small>
+              
+            @foreach (App\Http\Controllers\FrontProductListController::getProduct() as $product)
+
+            <div class="col-md-4 {{$product->slug}}">
+              <div class="card mb-4 box-shadow-sm">
+                <img class="card-img-top" src="{{Storage::url($product->image)}}" height='200'>
+                <div class="card-body">
+                  <p><b>{{$product->name}} - {{$product->slug }}</b></p>
+                  <p class="card-text">
+                    {!! Str::limit($product->description,100) !!}
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a href="product/{{$product->id}}"><button type="button" class="btn btn-sm btn-outline-success">View</button></a>
+                      <a href="{{route('add.cart',[$product->id])}}"><button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button></a>
                     </div>
+                    <small class="text-muted">{{$product->price}} dh</small>
                   </div>
                 </div>
               </div>
+            </div>
+             
+   
               @endforeach
             </div>
           </div>

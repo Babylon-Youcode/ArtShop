@@ -18,7 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <div style="z-index:0">
+    <div style="z-index:100">
     @notifyCss
     <x:notify-messages />
     @notifyJs 
@@ -26,7 +26,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="z-index:0">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -44,7 +44,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        <a href="{{'cart.show'}}" class="nav-link">
+                        <a href="{{'cart'}}" class="nav-link">
                             <span class="fas fa-shopping-cart">({{session()->has('cart')?session()->get('cart')->totalQuantity : '0'}})</span>
                         </a>
                         @guest
@@ -94,20 +94,65 @@
     $(document).ready(function(){
 
         const btns = document.querySelectorAll('.flask');
-        console.log(btns);
+        const products = document.querySelectorAll('.col-md-4');
+              
         btns.forEach(element => {
 
             element.addEventListener('click',e =>{
                 
-                console.log(e.target);
+            
                const filter = e.target.dataset.filter;
-                switch(filter){
+              
+                products.forEach(element => {
 
-                    case 'Standard' : console.log('Standatd clicked');
-                    break;
-                    default : console.log('error');
-                }
-               
+                   switch(filter){
+
+                       case 'all' :
+                        element.style.display = 'block';
+                        break;
+
+                       case 'standard':
+                        if(element.classList.contains('standard'))
+                        {
+                            element.style.display = 'block';
+                        }
+                        else{
+                            element.style.display = "none";
+                        }
+                       break;
+                       case 'dyptique':
+                          if(element.classList.contains('dyptique'))
+                          {
+                              element.style.display = 'block';
+                          }
+                          else
+                          {
+                              element.style.display = "none";
+                          }
+                       break;
+                       case 'quadruple':
+                       if(element.classList.contains('quadruple')){
+                            element.style.display = 'block'
+                       }
+                       else
+                       {
+                        element.style.display = "none";
+                       }
+                       break;
+                       case 'triptyque':
+                       
+                       if(element.classList.contains('triptype')){
+                        element.style.display = 'block'
+                       }
+                       else{
+                        element.style.display = "none";
+                       }
+                       break;
+                       default: console.log(`the ${filter} is not well`);
+                   }
+                })
+            
+             
             })
         })
     })
