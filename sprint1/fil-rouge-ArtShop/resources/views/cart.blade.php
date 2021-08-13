@@ -50,7 +50,7 @@
       <div class="card-footer" style="overflow:hidden">
           <button class="btn btn-primary">Continue shopping</button>
           <span style="margin-left:30%">Total Price : {{$cart->totalPrice}} Dh</span>
-        <button class="btn btn-info float-right">Checkout</button>
+        <a href="{{route('cart.checkout',$cart->totalPrice)}}"><button class="btn btn-info float-right">Checkout</button></a>
       </div>
       @else
       <td>No items in cart</td>

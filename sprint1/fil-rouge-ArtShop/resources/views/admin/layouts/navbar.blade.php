@@ -32,6 +32,8 @@
       </li>
     </ul>
   </nav>
+  <div style="z-index:100">
   @notifyCss     
   <x:notify-messages/>
   @notifyJs 
+  </div>

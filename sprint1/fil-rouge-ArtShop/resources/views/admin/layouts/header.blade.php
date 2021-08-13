@@ -9,7 +9,7 @@
   <meta name="author" content="">
   <link rel="stylesheet" href="{{asset('/resources/css/style.css')}}">
   <link href="{{asset('admin/img/logo/logo.png')}}" rel="icon">
-  <title>RuangAdmin - Dashboard</title>
+  <title>Admin</title>
   <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
   <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('admin/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">

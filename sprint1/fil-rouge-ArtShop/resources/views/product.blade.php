@@ -34,7 +34,7 @@
 
   <section class="container-fluid">
 <div class="cat" style="transform: translate(20px,0px)">
-  <h2 style="font-size: 25px">Category :</h2><br>
+  <h2 style="font-size: 25px"><b>Category :</b></h2><br>
   <input type="button" class="btn btn-secondary flask" value="All" data-filter="all">
   @foreach (App\Models\Category::all() as $cat)
   <input type="button" class="btn btn-secondary flask" value="{{$cat->name}}"  data-filter="{{$cat->slug}}">
@@ -43,7 +43,7 @@
 </div>
         <div class="album py-5 bg-light">
           <div class="container">
-            <h2 style="font-size: 25px">Products :</h2><br>
+            <h2 style="font-size: 25px"><b>Products :</b></h2><br>
             <div class="row">
               
             @foreach (App\Http\Controllers\FrontProductListController::getProduct() as $product)
@@ -71,7 +71,6 @@
               @endforeach
             </div>
           </div>
-          
         </div>
     
       </section>

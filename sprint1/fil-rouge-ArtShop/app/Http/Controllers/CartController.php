@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Cart;
+
 use Illuminate\Http\Request;
+
+
+
 
 class CartController extends Controller
 {
@@ -49,4 +53,11 @@ class CartController extends Controller
         notify()->success('cart deleted');
              return redirect()->back();
     }
+    public function checkout($amount){
+        return view('/checkout')->with('amount',$amount);
+        		
+    }
+  
 }
+         
+     

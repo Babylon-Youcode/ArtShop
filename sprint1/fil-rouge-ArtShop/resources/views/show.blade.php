@@ -15,7 +15,7 @@
             </aside>
             <aside class="col-sm-7">
                 <section class="card-body p-5">
-                    <h3 class="title mb-3">
+                    <h3 class="title mb-3" style="font-size: 19px">
                         {{$product->name}}
                     </h3>
                     <p class="price-detail-wrap">
@@ -23,28 +23,28 @@
                             <span class="currency">{{$product->price}} Dh</span>
 
                         </span>
-                    </p>
-                    <h3>Description</h3>
+                    </p><br>
+                    <h3 style="font-size: 25px">Description :</h3>
                         <p>{!! $product->description !!}</p>
-                    <h3>Additional information</h3>
-                        <p>{!! $product->additional_info !!}</p>
-                    <hr>
+                    <h3 style="font-size: 25px">Additional information :</h3>
+                        <p>{!! $product->additional_info !!}</p><br>
+                    <hr><br>
                     <div class="row">
                         <div class="form-inline">
-                            <h3>Quantity :</h3>
+                            <h3 style="font-size: 25px">Quantity :</h3>
                             <input type="text" name="qty" class="form-contol ml-2">
                             <input type="submit" class="btn btn-primary ml-2">
                         </div>
-                    </div>
-                    <hr>
-                        <a href="#" class="btn btn-lg btn-outline-primary text-uppercase">Add to cart</a>
+                    </div><br>
+                    <hr><br>
+                        <a href="{{route('add.cart',[$product->id])}}" class="btn btn-lg btn-outline-primary text-uppercase"><b>Add to cart</b></a>
                 </section>
             </aside>
          </div>
      </div>
      @if(count($productFromSameCategories)>0)
      <div class="jumbotron">
-         <h3>You may like</h3>
+         <h3 style="font-size: 25px"><b>You may like</b></h3><br>
         <div class="row">
             @foreach ($productFromSameCategories as $product)
               <div class="col-md-4">
@@ -58,7 +58,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
                         <a href="{{Route('product.view',[$product->id])}}"><button type="button" class="btn btn-sm btn-outline-success">View</button></a>
-                        <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                        <a href="{{route('add.cart',[$product->id])}}"><button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button></a>
                       </div>
                       <small class="text-muted">{{$product->price}} dh</small>
                     </div>
