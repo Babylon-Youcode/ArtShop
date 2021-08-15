@@ -1,5 +1,6 @@
 <?php
 namespace App;
+
 class Cart{
 
     public $items = [];
@@ -7,7 +8,8 @@ class Cart{
     public $totalPrice;
 
     public function __construct($cart=null){
-        if($cart){
+        if($cart)
+        {
             $this->items = $cart->items;
             $this->totalPrice = $cart->totalPrice;
             $this->totalQuantity = $cart->totalQuantity;
@@ -16,8 +18,9 @@ class Cart{
                 $this->totalPrice=0;
                 $this->totalQuantity=0;
             }
-        
+
     }
+
     public function add($product){
         $item = [
             'id'=>$product->id,
@@ -33,11 +36,13 @@ class Cart{
         }else{
             $this->totalPrice+=$product->price;
             $this->totalQuantity+=1;
-        
+
         }
+
         $this->items[$product->id]['qty']+=1;
     }
     public function updateQuantity($id,$qty){
+
         $this->totalQuantity-=$this->items[$id]['qty'];
         $this->totalPrice-=$this->items[$id]['price']*$this->items[$id]['qty'];
         //add the item with new qty

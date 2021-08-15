@@ -21,14 +21,14 @@
     <div style="z-index:100">
     @notifyCss
     <x:notify-messages />
-    @notifyJs 
+    @notifyJs
     </div>
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="z-index:0">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -41,11 +41,27 @@
 
                     </ul>
 
+
+
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+
+
                         <a href="{{'cart'}}" class="nav-link">
-                            <span class="fas fa-shopping-cart">({{session()->has('cart')?session()->get('cart')->totalQuantity : '0'}})</span>
+                            <span class="fas fa-shopping-cart">
+
+                                @if(session()->has('cart'))
+
+                                    {{session()->get('cart')->totalQuantity}}
+                                @else
+
+                                    {{  session()->forget('cart')  }}
+                                @endif
+
+
+                            </span>
                         </a>
                         @guest
                             @if (Route::has('login'))
@@ -72,7 +88,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{route('logout')}}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -95,14 +111,14 @@
 
         const btns = document.querySelectorAll('.flask');
         const products = document.querySelectorAll('.col-md-4');
-              
+
         btns.forEach(element => {
 
             element.addEventListener('click',e =>{
-                
-            
+
+
                const filter = e.target.dataset.filter;
-              
+
                 products.forEach(element => {
 
                    switch(filter){
@@ -140,7 +156,7 @@
                        }
                        break;
                        case 'triptyque':
-                       
+
                        if(element.classList.contains('triptype')){
                         element.style.display = 'block'
                        }
@@ -151,11 +167,19 @@
                        default: console.log(`the ${filter} is not well`);
                    }
                 })
-            
-             
+
+
             })
         })
+
+
+
+
     })
+
+
+
+
 
 
     </script>

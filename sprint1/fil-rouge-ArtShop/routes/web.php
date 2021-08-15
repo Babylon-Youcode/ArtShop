@@ -21,37 +21,45 @@ use App\Http\Controllers\charge;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/', 'FrontProductListController@index');
-Route::get('/product/{id}', [FrontProductListController::class,'show'])->name('product.view');
-Route::get('/category/{name}', 'FrontProductListController@allProduct')->name('product.list');
+
 Route::get('/dashboard', function(){
     return view('admin.dashboard');
 });
 
-Route::get('/checkout/{amount}','CartController@checkout')->name('cart.checkout')->middleware('auth');
-// Route::get('/charge', 'CartController@charge')->name('cart.charge');
 
-Route::get('/addTo Cart/{product}','cartController@addTocart')->name('add.cart');
+/*
+Enregistrement de la route de l'authentification
+login / register /logout
+*/
+Auth::routes();
+
+Route::get('/home',[\App\Http\Controllers\ProductList::class,'index']);
+Route::get('/product/{id}',[\App\Http\Controllers\ProductList::class,'show'])->name('product.view');
+Route::get('/logout', [\App\Http\Controllers\LoginController::class,'logout'])->name('logout');
+
+Route::get('/checkoutt/{amount}','CartController@checkout')->name('cart.checkout')->middleware('auth');
+Route::post('/charge','CartController@charge')->name('cart.charge');
+
+
+Route::get('/addToCart/{product}','cartController@addTocart')->name('add.cart');
 Route::get('/cart','CartController@showCart')->name('cart.show');
 Route::post('/products/{product}','CartController@updateCart')->name('cart.update');
 Route::post('/product/{product}','CartController@removeCart')->name('cart.remove');
 
 
-Auth::routes();
-
-
-Route::get('/home',function(){
+Route::get('/',function(){
     if(Auth::user() && Auth::user()->is_admin)
         return redirect('/dashboard');
 });
+
 route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],
 function(){
     Route::get('/dashboard', function(){
         return view('admin.dashboard');
     });
 
-    
+
 Route::resource('category','CategoryController');
 Route::resource('product','ProductController');
-Route::resource('subcategory','SubcategoryController');
+
 });
