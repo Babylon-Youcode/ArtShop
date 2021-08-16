@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Cart;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
+use http\Client\Curl\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -89,8 +91,57 @@ class CartController extends Controller
 
     public function charge(Request $request){
 
+  //5321 9621 4732 2566
 
-         dd($request->id);
+     $charge = Stripe::charges()->create([
+
+               'currency' => 'MAD',
+                'source' => $request->get('stripeToken'),
+                 'amount' => $request->get('amount'),
+                   'description' => 'Payment for Artshop'
+     ]);
+
+
+     $chargeId = $charge['id'];
+
+     if($chargeId){
+
+         auth()->user()->orders()->create([
+
+                    'cart' => serialize(session()->get('cart'))
+         ]);
+
+         session()->forget('cart');
+         notify()->success('Transaction Completed');
+         return redirect()->to('home');
+
+     }
+     else{
+
+         return redirect()->back();
+     }
+
+
+    }
+
+    public function order(){
+
+
+        $user = auth()->user();
+
+
+        $orders = auth()->user()->orders;
+
+        $carts = $orders->transform(function($cart,$key){
+
+
+            return unserialize($cart->cart);
+        });
+
+
+        return view('order',compact('carts','user'));
+
+
 
     }
 
@@ -108,6 +159,8 @@ class CartController extends Controller
         }
 
     }
+
+
 
 }
 

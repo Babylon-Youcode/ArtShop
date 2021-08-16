@@ -1,53 +1,50 @@
 @extends('layouts.app')
 
  @section('content')
- <div class="container">
-     <div class="card">
-         <div class="row">
-            <aside class="col-sm-5 border-right">
-                <section class="gallery-wrap">
-                    <div class="img-big-wrap">
-                        <div style="overflow: hidden;"><a href="#">
-                            <img src="{{Storage::url($product->image)}}" width="100%" ></a>
-                        </div>
-                    </div>
-                </section>
-            </aside>
-            <aside class="col-sm-7">
-                <section class="card-body p-5">
-                    <h3 class="title mb-3" style="font-size: 19px">
-                        {{$product->name}}
-                    </h3>
-                    <p class="price-detail-wrap">
-                        <span class="price h3 text-danger">
-                            <span class="currency">{{$product->price}} Dh</span>
+ <div class="container mt-5 mb-5">
 
-                        </span>
-                    </p><br>
-                    <h3 style="font-size: 25px">Description :</h3>
-                        <p>{!! $product->description !!}</p>
-                    <h3 style="font-size: 25px">Additional information :</h3>
-                        <p>{!! $product->additional_info !!}</p><br>
-                    <hr><br>
-                    <div class="row">
-                        <div class="form-inline">
-                            <h3 style="font-size: 25px">Quantity :</h3>
-                            <input type="text" name="qty" class="form-contol ml-2">
-                            <input type="submit" class="btn btn-primary ml-2">
-                        </div>
-                    </div><br>
-                    <hr><br>
-                        <a href="{{route('add.cart',[$product->id])}}" class="btn btn-lg btn-outline-primary text-uppercase"><b>Add to cart</b></a>
-                </section>
-            </aside>
+     <div class="d-flex justify-content-center row">
+         <div class="col-md-10">
+             <div class="row p-2 bg-white border rounded">
+                 <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="{{Storage::url($product->image)}}" style="height:239px"></div>
+                 <div class="col-md-6 mt-1">
+                     <h5>  {{$product->name}}</h5>
+
+                     <div class="mt-1 mb-1 spec-1"><span>{!! $product->additional_info !!}</span></div>
+                     <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span></div>
+
+                     <p class="text-justify mb-0">{!! $product->description !!}<br><br></p>
+
+                     <div class="row">
+                         <div class="form-inline" style="transform: translateX(10px);">
+                             <h5 style="font-size: 19px">Quantity :</h5>
+                             <input type="text" name="qty" class="form-contol ml-2 border border-dark" style="width:80px">
+                             <button class="btn btn-primary btn-sm" type="submit" style="margin: 12px">Envoyer</button>
+                         </div>
+                     </div>
+
+
+                 </div>
+                 <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                     <div class="d-flex flex-row align-items-center">
+                         <h4 class="mr-1">{{$product->price}} Dh</h4>
+                     </div>
+                     <h6 class="text-success">En stock</h6>
+                     <div class="d-flex flex-column mt-4">
+                         <a href="{{route('add.cart',[$product->id])}}" class="btn btn-outline-primary btn-sm mt-2"><b>Add to cart</b></a>
+                     </div>
+                 </div>
+             </div>
+
          </div>
      </div>
+
      @if(count($productFromSameCategories)>0)
-     <div class="jumbotron">
+     <div class="jumbotron" style="margin-top: 40px">
          <h3 style="font-size: 25px"><b>You may like</b></h3><br>
         <div class="row">
             @foreach ($productFromSameCategories as $product)
-              <div class="col-md-4">
+              <div class="col-sm-12 col-md-6 col-lg-4">
                 <div class="card mb-4 box-shadow-sm">
                   <img class="card-img-top" src="{{Storage::url($product->image)}}" width="100%" height="200">
                   <div class="card-body">

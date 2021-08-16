@@ -146,7 +146,7 @@
             </div>
 
 
-            <button class="btn btn-primary btn-lg btn-block" type="submit">submit payment</button>
+            <button class="btn btn-primary btn-lg btn-block mt-4" type="submit">submit payment</button>
         </form>
       </div>
     </div>
@@ -279,7 +279,7 @@
                 hiddenInput.setAttribute('value',token.id);
                 form.appendChild(hiddenInput);
 
-                //form.submit();
+                form.submit();
 
             }
 

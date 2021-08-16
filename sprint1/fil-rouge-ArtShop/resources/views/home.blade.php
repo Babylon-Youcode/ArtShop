@@ -34,7 +34,7 @@
 
         <section class="container-fluid">
             <div class="cat" style="transform: translate(20px,0px)">
-                <h2 style="font-size: 25px"><b>Category :</b></h2><br>
+                <h2 style="font-size: 25px"><b>Category </b></h2><br>
                 <input type="button" class="btn btn-secondary flask" value="All" data-filter="all">
                 @foreach (App\Models\Category::all() as $cat)
                     <input type="button" class="btn btn-secondary flask" value="{{$cat->name}}"  data-filter="{{$cat->slug}}">
@@ -43,12 +43,12 @@
             </div>
             <div class="album py-5 bg-light">
                 <div class="container">
-                    <h2 style="font-size: 25px"><b>Products :</b></h2><br>
+                    <h2 style="font-size: 25px"><b>Products </b></h2><br>
                     <div class="row">
 
                         @foreach (App\Http\Controllers\ProductList::getProduct() as $product)
 
-                            <div class="col-md-4 {{$product->slug}}">
+                            <div class="col-md-6 col-sm-12 {{$product->slug}}">
                                 <div class="card mb-4 box-shadow-sm">
                                     <img class="card-img-top" src="{{Storage::url($product->image)}}" height='200'>
                                     <div class="card-body">
@@ -73,13 +73,13 @@
             </div>
 
         </section>
-        <div class="jumbotron" style="width: 90%;transform: translate(5%);">
+        <div class="jumbotron hide" style="width: 90%;transform: translate(5%);">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="row">
                             @foreach ($randomActiveProducts as $product)
-                                <div class="col-4" >
+                                <div class="col-md-4 col-sm-6">
                                     <div class="card mb-4 box-shadow-sm">
                                         <img src="{{Storage::url($product->image)}}" style="width: 100%" height="200">
                                         <div class="card-body">
@@ -103,7 +103,7 @@
                     <div class="carousel-item">
                         <div class="row">
                             @foreach ($randomItemProducts as $product)
-                                <div class="col-4">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="card mb-4 box-shadow-sm">
                                         <img class="card-img-top" src="{{Storage::url($product->image)}}" width="100%" height="200">
                                         <div class="card-body">

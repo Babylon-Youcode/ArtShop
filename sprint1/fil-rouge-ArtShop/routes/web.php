@@ -33,13 +33,14 @@ login / register /logout
 */
 Auth::routes();
 
-Route::get('/home',[\App\Http\Controllers\ProductList::class,'index']);
+Route::get('/home',[\App\Http\Controllers\ProductList::class,'index'])->name('home');
 Route::get('/product/{id}',[\App\Http\Controllers\ProductList::class,'show'])->name('product.view');
-Route::get('/logout', [\App\Http\Controllers\LoginController::class,'logout'])->name('logout');
+
+
 
 Route::get('/checkoutt/{amount}','CartController@checkout')->name('cart.checkout')->middleware('auth');
-Route::post('/charge','CartController@charge')->name('cart.charge');
-
+Route::post('/charge',[\App\Http\Controllers\CartController::class,'charge'])->name('cart.charge');
+Route::get('/orders',[\App\Http\Controllers\CartController::class,'order'])->name('cart.order')->middleware('auth');
 
 Route::get('/addToCart/{product}','cartController@addTocart')->name('add.cart');
 Route::get('/cart','CartController@showCart')->name('cart.show');

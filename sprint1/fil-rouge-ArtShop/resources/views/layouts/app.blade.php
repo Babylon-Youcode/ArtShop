@@ -38,17 +38,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-
-
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-
-
                         <a href="{{'cart'}}" class="nav-link">
                             <span class="fas fa-shopping-cart">
 
@@ -63,6 +52,17 @@
 
                             </span>
                         </a>
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @if(\Illuminate\Support\Facades\Auth::check())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('cart.order')}}">Order</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('cart.show')}}">Panier</a></li>
+                        @endif
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -81,7 +81,10 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="z-index:100">
+
+
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -110,7 +113,7 @@
     $(document).ready(function(){
 
         const btns = document.querySelectorAll('.flask');
-        const products = document.querySelectorAll('.col-md-4');
+        const products = document.querySelectorAll('.col-md-6');
 
         btns.forEach(element => {
 
