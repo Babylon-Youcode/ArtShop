@@ -22,7 +22,7 @@ class CartController extends Controller
 
 
 
-        if(Auth::user())
+        if(auth()->user())
         {
             if(session()->has('cart')){
                 $cart = new Cart(session()->get('cart'));
@@ -46,7 +46,7 @@ class CartController extends Controller
     }
     public function showCart(){
 
-        if(Auth::user()){
+        if(auth()->user()){
             if(session()->has('cart')){
                 $cart = new Cart(session()->get('cart'));
             }else{

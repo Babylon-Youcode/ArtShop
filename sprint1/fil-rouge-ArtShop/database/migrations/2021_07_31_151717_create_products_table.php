@@ -21,7 +21,6 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->text('additional_info');
             $table->integer('category_id');
-         // $table->integer('subcategory_id')->nullable();
             $table->timestamps();
         });
     }

@@ -18,13 +18,7 @@ use App\Http\Controllers\charge;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', function(){
-    return view('admin.dashboard');
-});
 
 
 /*
@@ -53,14 +47,16 @@ Route::get('/',function(){
         return redirect('/dashboard');
 });
 
-route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],
-function(){
-    Route::get('/dashboard', function(){
-        return view('admin.dashboard');
+
+Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']], function(){
+
+        Route::get('/dashboard', function(){
+            return view('admin.dashboard');
+        });
+
+        Route::resource('category','CategoryController');
+        Route::resource('product','ProductController');
+
     });
 
 
-Route::resource('category','CategoryController');
-Route::resource('product','ProductController');
-
-});

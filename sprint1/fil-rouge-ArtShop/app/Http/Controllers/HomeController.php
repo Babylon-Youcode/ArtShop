@@ -23,10 +23,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->is_admin==1){
-            return redirect()->to('auth/dashboard');
+        if(auth()->user()->is_admin === 1 && auth()->user()->name === "mmerguoum")
+        {
+            return redirect()->to('/auth/dashboard');
         }
-             return redirect()->to('/');
+        else{
+            return redirect()->to('/');
+        }
+
     }
 }
 

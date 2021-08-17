@@ -39,7 +39,7 @@
             </td>
                 <td>
                     <form action="{{route('cart.remove',$product['id'])}}" method="POST">@csrf
-                        <button type="button" class="btn btn-danger btn-sm px-3">
+                        <button type="submit" class="btn btn-danger btn-sm px-3">
                             <i class="fas fa-times"></i>
                         </button>
             </form>
@@ -53,7 +53,8 @@
 </div>
 <div class="container-fluid">
     <div class="card-footer" style="overflow:hidden">
-        <button class="btn btn-primary">Continue shopping</button>
+        <a href="{{url('home')}}"><button class="btn btn-primary">Continue shopping</button></a>
+
         <span>Total Price : {{$cart->totalPrice}} Dh</span>
         <a href="{{route('cart.checkout',$cart->totalPrice)}}"><button class="btn btn-info float-right">Checkout</button></a>
     </div>

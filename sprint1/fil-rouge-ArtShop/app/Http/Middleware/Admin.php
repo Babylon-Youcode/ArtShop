@@ -23,7 +23,7 @@ class Admin
 
         }
 
-       return redirect('home');
+       return redirect('/auth/dashboard');
 
     }
 }
