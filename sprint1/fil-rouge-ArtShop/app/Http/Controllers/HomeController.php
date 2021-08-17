@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -32,5 +36,41 @@ class HomeController extends Controller
         }
 
     }
+
+    public static function getOrders(){
+        $order = Order::all();
+        return $order->count();
+    }
+
+    public static function getProducts(){
+        $prod = Product::all();
+        return $prod->count();
+
+    }
+    public static function  getUsers(){
+
+            $users = User::all();
+            unset($users[0]);
+            return $users->count();
+
+    }
+
+
+    public static function ProductInCategory()
+    {
+
+        $count=DB::table('categories')
+            ->select("categories.name", DB::raw("COUNT(products.id) as products"))
+            ->groupBy('categories.name')
+            ->join('products','products.category_id','=','categories.id')
+            ->get();
+
+
+        return $count;
+
+
+    }
+
+
 }
 
